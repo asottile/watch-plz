@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/asottile/watch-plz.svg?branch=master)](https://travis-ci.org/asottile/watch-plz)
+
 watch-plz
 =========
 
