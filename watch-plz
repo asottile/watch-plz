@@ -4,8 +4,6 @@ import json
 import os
 import urllib.request
 
-REPOSITORIES = 'https://api.github.com/user/subscriptions?per_page=100'
-SUBSCRIPTIONS = 'https://api.github.com/user/repos?per_page=100'
 DONT_WATCH = ('lyft/', 'tox-dev/')
 
 
