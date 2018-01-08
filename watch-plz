@@ -1,0 +1,71 @@
+#!/usr/bin/env python3.6
+import argparse
+import json
+import os
+import urllib.request
+
+REPOSITORIES = 'https://api.github.com/user/subscriptions?per_page=100'
+SUBSCRIPTIONS = 'https://api.github.com/user/repos?per_page=100'
+DONT_WATCH = ('lyft/', 'tox-dev/')
+
+
+def _parse_link_header(lnk):
+    ret = {}
+    parts = lnk.split(',')
+    for part in parts:
+        link, _, rel = part.partition(';')
+        link, rel = link.strip(), rel.strip()
+        assert link.startswith('<') and link.endswith('>'), link
+        assert rel.startswith('rel="') and rel.endswith('"'), rel
+        link, rel = link[1:-1], rel[len('rel="'):-1]
+        ret[rel] = link
+    return ret
+
+
+def _req(*args, **kwargs):
+    req = urllib.request.Request(*args, **kwargs)
+    resp = urllib.request.urlopen(req)
+    return json.loads(resp.read()), _parse_link_header(resp.headers['link'])
+
+
+def _get_all(thing, token):
+    url = f'https://api.github.com/user/{thing}?per_page=100'
+    headers = {'Authorization': f'token {token}'}
+    ret = []
+    while True:
+        resp, links = _req(url, headers=headers)
+        ret.extend(resp)
+        if 'next' in links:
+            url = links['next']
+        else:
+            return ret
+
+
+def _subscribe(repo, token):
+    url = f'https://api.github.com/repos/{repo}/subscription'
+    data = json.dumps({'subscribed': True}).encode()
+    headers = {'Authorization': f'token {token}'}
+    req = urllib.request.Request(url, data=data, headers=headers, method='PUT')
+    urllib.request.urlopen(req)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dry-run', action='store_true')
+    args = parser.parse_args()
+
+    token = os.environ['GH_TOKEN']
+    print('getting subscriptions...')
+    subbed = {x['full_name'] for x in _get_all('subscriptions', token)}
+    print('getting repositories...')
+    repos = [x['full_name'] for x in _get_all('repos', token)]
+
+    for repo in repos:
+        if not repo.startswith(DONT_WATCH) and repo not in subbed:
+            print(f'watching {repo}...')
+            if not args.dry_run:
+                _subscribe(repo, token)
+
+
+if __name__ == '__main__':
+    exit(main())
