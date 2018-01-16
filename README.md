@@ -16,8 +16,9 @@ Ensure all of your repositories are watched.
 ### usage
 
 Grab a token [here](https://github.com/settings/tokens/new).
-`public_repository` should be sufficient for this token -- though if you want
-to watch private repositories you'll need the full `repo` permission.
+`public_repository` + `notifications` should be sufficient for this token --
+though if you want to watch private repositories you'll need the full `repo`
+permission.
 
 Modify `DONT_WATCH` in the `watch-plz` script.
 
