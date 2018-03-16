@@ -8,6 +8,9 @@ DONT_WATCH = ('lyft/', 'tox-dev/')
 
 
 def _parse_link_header(lnk):
+    if lnk is None:
+        return {}
+
     ret = {}
     parts = lnk.split(',')
     for part in parts:
