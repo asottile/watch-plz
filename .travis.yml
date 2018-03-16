@@ -4,4 +4,7 @@ branches: master
 env:
     # GH_TOKEN
     - secure: "fqD4zGXYk1sGKOb/rf5us93W7MFUjN0pxfWXSwVn56qLLYEOz97FPvWvR6ko4wg9WEEn2nFkevIGP6HtVJFOvoPhh40tdENLK3OS7Vd4s5iijhDzYItXzvr/81vZUDvmiubIlN3zrwmGTCgqH4KdaRzl41ddpy03gYndPFhjhwmBQQfLN28hmHJQOfqBTlGggoud2sx/glB31fvXwfTrxdweo/If9kX/YqFc/3eVWunY/ZeWxFRR3Z+iMlv62dTaUnKZNVPwae4QXkYcK2ngCcmVXUWAjb97/G10bt4+26Ubt3dqb8ZLIiDByezoWQrpDMC/Rcjjk7SLawTeghA4HeAyT7sXxTdmgMhr6GEkPz2g97P2otiQttYaXnjRlO5XprLOfs/Yq+G/KF4KtTjZO7Hb+kEBavmbOfcjuY6f8wyCy2pW+/GSDPxpVXoJZ0KHyay4vgQSwB04g+M9zQisZ4K0kLUlNytJAzYEbBdoxJutDRgju8kJH2ofvmNDr+CSoKjUZjwGLYomZINGWZ3WwR6avXLQjFpWALkuS1+nT6KDBizG5VAyg87UmDrJyOxqNR+WieowOr60g2k6p0au4VUiHQ4+y0Id/uMG4jrXNa+6Muss+nv7UvWB9LJTNWVt5w+279kJ0HCv8/YlEwLi12H2MNQWSoQwX2DkJnwTLKs="
-script: ./watch-plz
+script: |
+    if [ "${TRAVIS_PULL_REQUEST}" = false ]; then
+        ./watch-plz
+    fi
