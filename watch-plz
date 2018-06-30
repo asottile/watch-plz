@@ -4,7 +4,7 @@ import json
 import os
 import urllib.request
 
-DONT_WATCH = ('lyft/', 'pytest-dev/', 'tox-dev/')
+DONT_WATCH = ('conda-forge/', 'lyft/', 'pytest-dev/', 'tox-dev/')
 
 
 def _parse_link_header(lnk):
