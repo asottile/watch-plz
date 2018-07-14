@@ -3,11 +3,16 @@ import argparse
 import json
 import os
 import urllib.request
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
 
 DONT_WATCH = ('conda-forge/', 'lyft/', 'pytest-dev/', 'tox-dev/')
 
 
-def _parse_link_header(lnk):
+def _parse_link_header(lnk: Optional[str]) -> Dict[str, str]:
     if lnk is None:
         return {}
 
@@ -23,16 +28,18 @@ def _parse_link_header(lnk):
     return ret
 
 
-def _req(*args, **kwargs):
-    req = urllib.request.Request(*args, **kwargs)
-    resp = urllib.request.urlopen(req)
-    return json.loads(resp.read()), _parse_link_header(resp.headers['link'])
+def _req(url: str, **kwargs: Any) -> Tuple[Any, Dict[str, str]]:
+    resp = urllib.request.urlopen(urllib.request.Request(url, **kwargs))
+    # TODO: https://github.com/python/typeshed/issues/2333
+    from typing import cast
+    resp = cast(urllib.response.addinfourl, resp)
+    return json.load(resp), _parse_link_header(resp.headers['link'])
 
 
-def _get_all(thing, token):
+def _get_all(thing: str, token: str) -> List[Dict[str, Any]]:
     url = f'https://api.github.com/user/{thing}?per_page=100'
     headers = {'Authorization': f'token {token}'}
-    ret = []
+    ret: List[Dict[str, Any]] = []
     while True:
         resp, links = _req(url, headers=headers)
         ret.extend(resp)
@@ -42,7 +49,7 @@ def _get_all(thing, token):
             return ret
 
 
-def _subscribe(repo, token):
+def _subscribe(repo: str, token: str) -> None:
     url = f'https://api.github.com/repos/{repo}/subscription'
     data = json.dumps({'subscribed': True}).encode()
     headers = {'Authorization': f'token {token}'}
@@ -50,7 +57,7 @@ def _subscribe(repo, token):
     urllib.request.urlopen(req)
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args()
@@ -66,6 +73,7 @@ def main():
             print(f'watching {repo}...')
             if not args.dry_run:
                 _subscribe(repo, token)
+    return 0
 
 
 if __name__ == '__main__':
