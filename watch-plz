@@ -9,7 +9,13 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-DONT_WATCH = ('conda-forge/', 'lyft/', 'pytest-dev/', 'tox-dev/')
+DONT_WATCH = (
+    'conda-forge/',
+    'lyft/',
+    'lyft-transit/',
+    'pytest-dev/',
+    'tox-dev/',
+)
 
 
 def _parse_link_header(lnk: Optional[str]) -> Dict[str, str]:
