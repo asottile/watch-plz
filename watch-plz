@@ -15,6 +15,7 @@ DONT_WATCH = (
     'lyft-transit/',
     'pytest-dev/',
     'tox-dev/',
+    'TrustNetworks/',
 )
 
 
