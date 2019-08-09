@@ -13,7 +13,7 @@ DONT_WATCH = (
     'conda-forge/',
     'lyft/',
     'lyft-transit/',
-    'pycqa/',
+    'PyCQA/',
     'pytest-dev/',
     'res-eng/',
     'tox-dev/',
