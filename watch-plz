@@ -38,9 +38,6 @@ def _parse_link_header(lnk: Optional[str]) -> Dict[str, str]:
 
 def _req(url: str, **kwargs: Any) -> Tuple[Any, Dict[str, str]]:
     resp = urllib.request.urlopen(urllib.request.Request(url, **kwargs))
-    # TODO: https://github.com/python/typeshed/issues/2333
-    from typing import cast
-    resp = cast(urllib.response.addinfourl, resp)
     return json.load(resp), _parse_link_header(resp.headers['link'])
 
 
