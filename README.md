@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/asottile/watch-plz.svg?branch=master)](https://travis-ci.org/asottile/watch-plz)
+[![Build Status](https://github.com/asottile/watch-plz/workflows/main/badge.svg)](https://github.com/asottile/watch-plz/actions)
 
 watch-plz
 =========
@@ -28,5 +28,6 @@ GH_TOKEN=... ./watch-plz --dry-run
 
 ### how I use it
 
-I use [travis-ci cron](https://docs.travis-ci.com/user/cron-jobs/) to run this
-periodically.
+I use [github actions scheduled builds] to run this periodically.
+
+[github actions scheduled builds]: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#onschedule

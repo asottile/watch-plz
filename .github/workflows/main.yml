@@ -1,0 +1,17 @@
+name: main
+on:
+  push:
+    branches: [master]
+  schedule:
+  - cron: '0 8 * * *'
+
+jobs:
+  build:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+    - run: ./watch-plz
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
