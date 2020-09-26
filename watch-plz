@@ -13,6 +13,7 @@ DONT_WATCH = (
     'asottile2',
     'conda-forge/',
     'PyCQA/',
+    'pypy/',
     'pytest-dev/',
     'res-eng/',
     'tox-dev/',
