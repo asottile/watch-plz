@@ -10,12 +10,11 @@ from typing import Optional
 from typing import Tuple
 
 DONT_WATCH = (
-    'asottile2',
+    'asottile2/',
     'conda-forge/',
     'PyCQA/',
     'pypy/',
     'pytest-dev/',
-    'res-eng/',
     'tox-dev/',
 )
 
