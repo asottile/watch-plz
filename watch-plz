@@ -12,7 +12,7 @@ from typing import Tuple
 DONT_WATCH = (
     'asottile2/',
     'conda-forge/',
-    'github/',
+    'getsentry/',
     'PyCQA/',
     'pypy/',
     'pytest-dev/',
