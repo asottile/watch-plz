@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/asottile/watch-plz/workflows/main/badge.svg)](https://github.com/asottile/watch-plz/actions)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/asottile/watch-plz/master.svg)](https://results.pre-commit.ci/latest/github/asottile/watch-plz/master)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/asottile/watch-plz/main.svg)](https://results.pre-commit.ci/latest/github/asottile/watch-plz/main)
 
 watch-plz
 =========
