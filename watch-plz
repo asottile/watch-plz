@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 import argparse
 import json
 import os
 import urllib.request
 from typing import Any
-from typing import Dict
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 DONT_WATCH = (
     'asottile2/',
@@ -20,7 +18,7 @@ DONT_WATCH = (
 )
 
 
-def _parse_link_header(lnk: Optional[str]) -> Dict[str, str]:
+def _parse_link_header(lnk: str | None) -> dict[str, str]:
     if lnk is None:
         return {}
 
@@ -36,15 +34,15 @@ def _parse_link_header(lnk: Optional[str]) -> Dict[str, str]:
     return ret
 
 
-def _req(url: str, **kwargs: Any) -> Tuple[Any, Dict[str, str]]:
+def _req(url: str, **kwargs: Any) -> tuple[Any, dict[str, str]]:
     resp = urllib.request.urlopen(urllib.request.Request(url, **kwargs))
     return json.load(resp), _parse_link_header(resp.headers['link'])
 
 
-def _get_all(thing: str, token: str) -> List[Dict[str, Any]]:
+def _get_all(thing: str, token: str) -> list[dict[str, Any]]:
     url = f'https://api.github.com/user/{thing}?per_page=100'
     headers = {'Authorization': f'token {token}'}
-    ret: List[Dict[str, Any]] = []
+    ret: list[dict[str, Any]] = []
     while True:
         resp, links = _req(url, headers=headers)
         ret.extend(resp)
