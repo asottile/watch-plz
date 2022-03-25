@@ -6,10 +6,6 @@ import json
 import os
 import urllib.request
 from typing import Any
-from typing import Dict
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 DONT_WATCH = (
     'asottile2/',
