@@ -11,6 +11,7 @@ DONT_WATCH = (
     'asottile2/',
     'conda-forge/',
     'getsentry/',
+    'GitHub-Stars/',
     'PyCQA/',
     'pypy/',
     'pytest-dev/',
