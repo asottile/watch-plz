@@ -10,6 +10,7 @@ from typing import Any
 DONT_WATCH = (
     'asottile2/',
     'conda-forge/',
+    'community/',
     'getsentry/',
     'GitHub-Stars/',
     'PyCQA/',
