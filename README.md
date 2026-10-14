@@ -8,11 +8,10 @@ Ensure all of your repositories are watched.
 
 ### why
 
-- My current employer also uses github
-- They have lots of repositories
-- I don't want to watch all of the repositories
-- So I uncheck the `Automatically watch repositories` setting
+- github [removed] the `Automatically watch repositories` setting
 - I then forget to watch my own repositories
+
+[removed]: https://github.blog/changelog/2025-05-22-sunset-of-automatic-watching-of-repositories-and-teams/
 
 ### usage
 
